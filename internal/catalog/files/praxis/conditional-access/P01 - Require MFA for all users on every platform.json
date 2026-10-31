@@ -1,0 +1,28 @@
+{
+  "displayName": "Praxis | P01 - Require MFA for all users on every platform",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "users": {
+      "excludeGroups": [
+        "${EMERGENCY_ACCESS_GROUP_ID}"
+      ],
+      "includeUsers": [
+        "All"
+      ]
+    },
+    "applications": {
+      "includeApplications": [
+        "All"
+      ]
+    },
+    "clientAppTypes": [
+      "all"
+    ]
+  },
+  "grantControls": {
+    "operator": "OR",
+    "builtInControls": [
+      "mfa"
+    ]
+  }
+}

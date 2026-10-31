@@ -1,0 +1,29 @@
+{
+  "name": "Visual Studio Updates",
+  "description": "",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "0"
+  ],
+  "settings": [
+    {
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+        "choiceSettingValue": {
+          "value": "device_vendor_msft_policy_config_visualstudiov2.1~policy~visualstudio~installandupdatesettings_allowstandardusercontrol_1",
+          "children": [
+            {
+              "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+              "choiceSettingValue": {
+                "value": "device_vendor_msft_policy_config_visualstudiov2.1~policy~visualstudio~installandupdatesettings_allowstandardusercontrol_allowstandardusercontroldropid_1"
+              },
+              "settingDefinitionId": "device_vendor_msft_policy_config_visualstudiov2.1~policy~visualstudio~installandupdatesettings_allowstandardusercontrol_allowstandardusercontroldropid"
+            }
+          ]
+        },
+        "settingDefinitionId": "device_vendor_msft_policy_config_visualstudiov2.1~policy~visualstudio~installandupdatesettings_allowstandardusercontrol"
+      }
+    }
+  ]
+}

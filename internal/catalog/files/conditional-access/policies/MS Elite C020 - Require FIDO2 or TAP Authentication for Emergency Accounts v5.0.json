@@ -1,0 +1,25 @@
+{
+  "displayName": "MS Elite | C020 - Require FIDO2 or TAP Authentication for Emergency Accounts v5.0",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "users": {
+      "includeGroups": [
+        "${EMERGENCY_ACCESS_GROUP_ID}"
+      ]
+    },
+    "applications": {
+      "includeApplications": [
+        "All"
+      ]
+    },
+    "clientAppTypes": [
+      "all"
+    ]
+  },
+  "grantControls": {
+    "operator": "OR",
+    "authenticationStrength": {
+      "id": "${EMERGENCY_ACCESS_AUTH_STRENGTH_ID}"
+    }
+  }
+}

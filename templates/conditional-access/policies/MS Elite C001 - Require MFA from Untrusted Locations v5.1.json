@@ -1,0 +1,62 @@
+{
+  "displayName": "MS Elite | C001 - Require MFA from Untrusted Locations v5.1",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "users": {
+      "excludeRoles": [
+        "d29b2b05-8046-44ba-8758-1e26182fcf32"
+      ],
+      "includeUsers": [
+        "All"
+      ],
+      "excludeGroups": [
+        "${EMERGENCY_ACCESS_GROUP_ID}",
+        "${SERVICE_ACCOUNTS_GROUP_ID}"
+      ],
+      "excludeGuestsOrExternalUsers": {
+        "externalTenants": {
+          "@odata.type": "#microsoft.graph.conditionalAccessAllExternalTenants",
+          "membershipKind": "all"
+        },
+        "guestOrExternalUserTypes": "internalGuest,b2bCollaborationGuest,b2bCollaborationMember,b2bDirectConnectUser,otherExternalUser,serviceProvider"
+      }
+    },
+    "locations": {
+      "includeLocations": [
+        "All"
+      ]
+    },
+    "platforms": {
+      "excludePlatforms": [
+        "android",
+        "iOS"
+      ],
+      "includePlatforms": [
+        "all"
+      ]
+    },
+    "applications": {
+      "includeApplications": [
+        "All"
+      ]
+    },
+    "clientAppTypes": [
+      "all"
+    ]
+  },
+  "grantControls": {
+    "operator": "OR",
+    "authenticationStrength": {
+      "id": "00000000-0000-0000-0000-000000000002"
+    }
+  },
+  "sessionControls": {
+    "signInFrequency": {
+      "type": "days",
+      "value": 1,
+      "isEnabled": true,
+      "frequencyInterval": "timeBased",
+      "authenticationType": "primaryAndSecondaryAuthentication"
+    }
+  }
+}

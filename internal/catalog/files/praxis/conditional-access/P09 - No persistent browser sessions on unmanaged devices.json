@@ -1,0 +1,34 @@
+{
+  "displayName": "Praxis | P09 - No persistent browser sessions on unmanaged devices",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "users": {
+      "excludeGroups": [
+        "${EMERGENCY_ACCESS_GROUP_ID}"
+      ],
+      "includeUsers": [
+        "All"
+      ]
+    },
+    "applications": {
+      "includeApplications": [
+        "All"
+      ]
+    },
+    "clientAppTypes": [
+      "browser"
+    ],
+    "devices": {
+      "deviceFilter": {
+        "mode": "exclude",
+        "rule": "device.isCompliant -eq True -or device.trustType -eq \"ServerAD\""
+      }
+    }
+  },
+  "sessionControls": {
+    "persistentBrowser": {
+      "isEnabled": true,
+      "mode": "never"
+    }
+  }
+}

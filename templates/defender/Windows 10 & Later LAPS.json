@@ -1,0 +1,27 @@
+{
+  "name": "Windows 10 & Later LAPS",
+  "description": "",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "0"
+  ],
+  "settings": [
+    {
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+        "choiceSettingValue": {
+          "value": "device_vendor_msft_laps_policies_backupdirectory_1",
+          "settingValueTemplateReference": {
+            "useTemplateDefault": false,
+            "settingValueTemplateId": "4d90f03d-e14c-43c4-86da-681da96a2f92"
+          }
+        },
+        "settingDefinitionId": "device_vendor_msft_laps_policies_backupdirectory",
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "a3270f64-e493-499d-8900-90290f61ed8a"
+        }
+      }
+    }
+  ]
+}

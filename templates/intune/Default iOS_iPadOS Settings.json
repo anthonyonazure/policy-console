@@ -1,0 +1,91 @@
+{
+  "name": "Default iOS/iPadOS Settings",
+  "description": "",
+  "platforms": "iOS",
+  "technologies": "mdm,appleRemoteManagement",
+  "roleScopeTagIds": [
+    "0"
+  ],
+  "settings": [
+    {
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstance",
+        "settingDefinitionId": "com.apple.applicationaccess_com.apple.applicationaccess",
+        "groupSettingCollectionValue": [
+          {
+            "children": [
+              {
+                "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+                "choiceSettingValue": {
+                  "value": "com.apple.applicationaccess_allowaccountmodification_true"
+                },
+                "settingDefinitionId": "com.apple.applicationaccess_allowaccountmodification"
+              },
+              {
+                "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+                "choiceSettingValue": {
+                  "value": "com.apple.applicationaccess_allowappinstallation_true"
+                },
+                "settingDefinitionId": "com.apple.applicationaccess_allowappinstallation"
+              },
+              {
+                "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+                "choiceSettingValue": {
+                  "value": "com.apple.applicationaccess_allowappremoval_true"
+                },
+                "settingDefinitionId": "com.apple.applicationaccess_allowappremoval"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstance",
+        "settingDefinitionId": "com.apple.mobiledevice.passwordpolicy_com.apple.mobiledevice.passwordpolicy",
+        "groupSettingCollectionValue": [
+          {
+            "children": [
+              {
+                "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+                "choiceSettingValue": {
+                  "value": "com.apple.mobiledevice.passwordpolicy_allowsimple_true"
+                },
+                "settingDefinitionId": "com.apple.mobiledevice.passwordpolicy_allowsimple"
+              },
+              {
+                "@odata.type": "#microsoft.graph.deviceManagementConfigurationSimpleSettingInstance",
+                "simpleSettingValue": {
+                  "value": 16,
+                  "@odata.type": "#microsoft.graph.deviceManagementConfigurationIntegerSettingValue"
+                },
+                "settingDefinitionId": "com.apple.mobiledevice.passwordpolicy_minlength"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstance",
+        "settingDefinitionId": "com.apple.shareddeviceconfiguration_com.apple.shareddeviceconfiguration",
+        "groupSettingCollectionValue": [
+          {
+            "children": [
+              {
+                "@odata.type": "#microsoft.graph.deviceManagementConfigurationSimpleSettingInstance",
+                "simpleSettingValue": {
+                  "value": "${LOCK_SCREEN_MESSAGE}",
+                  "@odata.type": "#microsoft.graph.deviceManagementConfigurationStringSettingValue"
+                },
+                "settingDefinitionId": "com.apple.shareddeviceconfiguration_lockscreenfootnote"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "@odata.type": "#microsoft.graph.macOSCompliancePolicy",
+  "description": "Basic Security Baseline for maOS",
+  "displayName": "B365-MAC-Compliance v4.0",
+  "passwordRequired": true,
+  "passwordBlockSimple": false,
+  "passwordExpirationDays": 65535,
+  "passwordMinimumLength": null,
+  "passwordMinutesOfInactivityBeforeLock": null,
+  "passwordPreviousPasswordBlockCount": null,
+  "passwordMinimumCharacterSetCount": null,
+  "passwordRequiredType": "deviceDefault",
+  "osMinimumVersion": null,
+  "osMaximumVersion": null,
+  "systemIntegrityProtectionEnabled": true,
+  "deviceThreatProtectionEnabled": false,
+  "deviceThreatProtectionRequiredSecurityLevel": "unavailable",
+  "storageRequireEncryption": true,
+  "firewallEnabled": false,
+  "firewallBlockAllIncoming": false,
+  "firewallEnableStealthMode": false
+}

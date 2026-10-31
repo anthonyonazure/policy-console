@@ -1,0 +1,28 @@
+{
+  "displayName": "Praxis | P12 - Require MFA for guests",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "users": {
+      "excludeGroups": [
+        "${EMERGENCY_ACCESS_GROUP_ID}"
+      ],
+      "includeUsers": [
+        "GuestsOrExternalUsers"
+      ]
+    },
+    "applications": {
+      "includeApplications": [
+        "All"
+      ]
+    },
+    "clientAppTypes": [
+      "all"
+    ]
+  },
+  "grantControls": {
+    "operator": "OR",
+    "builtInControls": [
+      "mfa"
+    ]
+  }
+}

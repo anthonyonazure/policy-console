@@ -1,0 +1,48 @@
+{
+  "displayName": "MS Elite | C016 - Limit Web Sessions Time from Unmanaged Devices v5.1",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "users": {
+      "includeUsers": [
+        "All"
+      ]
+    },
+    "devices": {
+      "deviceFilter": {
+        "mode": "exclude",
+        "rule": "device.trustType -eq \"ServerAD\" -or device.trustType -eq \"AzureAD\" -or device.isCompliant -eq True"
+      }
+    },
+    "platforms": {
+      "excludePlatforms": [
+        "android",
+        "iOS",
+        "macOS"
+      ],
+      "includePlatforms": [
+        "all"
+      ]
+    },
+    "applications": {
+      "includeApplications": [
+        "All"
+      ]
+    },
+    "clientAppTypes": [
+      "browser"
+    ]
+  },
+  "sessionControls": {
+    "signInFrequency": {
+      "type": "hours",
+      "value": 8,
+      "isEnabled": true,
+      "frequencyInterval": "timeBased",
+      "authenticationType": "primaryAndSecondaryAuthentication"
+    },
+    "persistentBrowser": {
+      "mode": "never",
+      "isEnabled": true
+    }
+  }
+}

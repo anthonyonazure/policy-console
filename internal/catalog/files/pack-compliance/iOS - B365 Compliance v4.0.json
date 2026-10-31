@@ -1,0 +1,19 @@
+{
+  "@odata.type": "#microsoft.graph.iosCompliancePolicy",
+  "description": "",
+  "displayName": "B365-iOS-Compliance v4.0",
+  "passcodeBlockSimple": true,
+  "passcodeExpirationDays": 365,
+  "passcodeMinimumLength": null,
+  "passcodeMinutesOfInactivityBeforeLock": null,
+  "passcodePreviousPasscodeBlockCount": 5,
+  "passcodeMinimumCharacterSetCount": null,
+  "passcodeRequiredType": "alphanumeric",
+  "passcodeRequired": true,
+  "osMinimumVersion": null,
+  "osMaximumVersion": null,
+  "securityBlockJailbrokenDevices": true,
+  "deviceThreatProtectionEnabled": false,
+  "deviceThreatProtectionRequiredSecurityLevel": "low",
+  "managedEmailProfileRequired": false
+}

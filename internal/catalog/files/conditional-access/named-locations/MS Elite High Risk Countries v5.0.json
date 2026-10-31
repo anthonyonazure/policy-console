@@ -1,0 +1,19 @@
+{
+  "@odata.type": "#microsoft.graph.countryNamedLocation",
+  "displayName": "MS Elite | High Risk Countries v5.0",
+  "countriesAndRegions": [
+    "BY",
+    "BR",
+    "CN",
+    "IN",
+    "IR",
+    "KR",
+    "NG",
+    "KP",
+    "RU",
+    "TH",
+    "UA"
+  ],
+  "countryLookupMethod": "clientIpAddress",
+  "includeUnknownCountriesAndRegions": false
+}

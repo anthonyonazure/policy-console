@@ -1,0 +1,44 @@
+{
+  "displayName": "MS Elite | C005 - Block Access from Untrusted Countries (Exclude Travel) v5.2",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "users": {
+      "includeUsers": [
+        "All"
+      ],
+      "excludeGroups": [
+        "${EMERGENCY_ACCESS_GROUP_ID}",
+        "${TRAVEL_EXCLUSION_GROUP_ID}"
+      ],
+      "excludeGuestsOrExternalUsers": {
+        "externalTenants": {
+          "@odata.type": "#microsoft.graph.conditionalAccessAllExternalTenants",
+          "membershipKind": "all"
+        },
+        "guestOrExternalUserTypes": "internalGuest,b2bCollaborationGuest,b2bCollaborationMember,b2bDirectConnectUser,otherExternalUser,serviceProvider"
+      }
+    },
+    "locations": {
+      "excludeLocations": [
+        "${TRUSTED_COUNTRIES_LOCATION_ID}"
+      ],
+      "includeLocations": [
+        "All"
+      ]
+    },
+    "applications": {
+      "includeApplications": [
+        "All"
+      ]
+    },
+    "clientAppTypes": [
+      "all"
+    ]
+  },
+  "grantControls": {
+    "operator": "OR",
+    "builtInControls": [
+      "block"
+    ]
+  }
+}

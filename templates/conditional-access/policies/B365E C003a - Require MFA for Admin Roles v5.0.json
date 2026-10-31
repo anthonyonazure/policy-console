@@ -1,0 +1,57 @@
+{
+  "displayName": "B365E | C003a - Require MFA for Admin Roles v5.0",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "users": {
+      "excludeRoles": [
+        "d29b2b05-8046-44ba-8758-1e26182fcf32"
+      ],
+      "includeRoles": [
+        "9b895d92-2cd3-44c7-9d02-a6ac2d5ea5c3",
+        "cf1c38e5-3621-4004-a7cb-879624dced7c",
+        "58a13ea3-c632-46ae-9ee0-9c0d43cd7f3d",
+        "ffd52fa5-98dc-465c-991d-fc073eb59f8f",
+        "c4e39bd9-1100-46d3-8c65-fb160da0071f",
+        "25a516ed-2fa0-40ea-a2d0-12923a21473a",
+        "aaf43236-0c0d-4d5f-883a-6955382ac081",
+        "7698a772-787b-4ac8-901f-60d6b08affd2",
+        "b1be1c3e-b65d-4f19-8427-f6fa0d97feb9",
+        "9360feb5-f418-4baa-8175-e2a00bac4301",
+        "8329153b-31d0-4727-b945-745eb3bc5f31",
+        "62e90394-69f5-4237-9190-012177145e10",
+        "f2ef992c-3afb-46b9-b7cf-a126ee74c451",
+        "729827e3-9c14-49f7-bb1b-9608f156bbb8",
+        "3a2c62db-5318-420d-8d74-23affee5d9d5",
+        "59d46f88-662b-457b-bceb-5c3809e5908f",
+        "966707d0-3269-4727-9be2-8c3a10f19b9d",
+        "7be44c8a-adaf-4e2a-84d6-ab2649e08a13",
+        "e8611ab8-c189-46e8-94e1-60213ab1f814",
+        "5d6b6bb7-de71-4623-b4af-96380a352509",
+        "194ae4cb-b126-40b2-bd5b-6091b380977d",
+        "5f2222b1-57c3-48ba-8ad5-d4759f1fde6f",
+        "fe930be7-5e62-47db-91af-98c3a49a38b1",
+        "8ac3fc64-6eca-42ea-9e69-59f4c7b60eb2",
+        "be2f45a1-457d-42af-a067-6ec1fa63bc45",
+        "158c047a-c907-4556-b7ef-446551a6b5f7"
+      ],
+      "excludeGroups": [
+        "${EMERGENCY_ACCESS_GROUP_ID}",
+        "${SERVICE_ACCOUNTS_GROUP_ID}"
+      ]
+    },
+    "applications": {
+      "includeApplications": [
+        "All"
+      ]
+    },
+    "clientAppTypes": [
+      "all"
+    ]
+  },
+  "grantControls": {
+    "operator": "OR",
+    "builtInControls": [
+      "mfa"
+    ]
+  }
+}

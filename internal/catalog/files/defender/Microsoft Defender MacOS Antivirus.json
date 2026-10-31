@@ -1,0 +1,345 @@
+{
+  "name": "Microsoft Defender MacOS Antivirus",
+  "description": "",
+  "platforms": "macOS",
+  "technologies": "mdm,microsoftSense",
+  "roleScopeTagIds": [
+    "0"
+  ],
+  "settings": [
+    {
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+        "choiceSettingValue": {
+          "value": "com.apple.managedclient.preferences_enabled_true",
+          "settingValueTemplateReference": {
+            "useTemplateDefault": false,
+            "settingValueTemplateId": "7ea0a2aa-0953-4340-b590-522f040b0da3"
+          }
+        },
+        "settingDefinitionId": "com.apple.managedclient.preferences_enabled",
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "9e424cc6-35b9-48ef-863c-73295aa9d2d7"
+        }
+      }
+    },
+    {
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+        "choiceSettingValue": {
+          "value": "com.apple.managedclient.preferences_automaticsamplesubmission_true",
+          "settingValueTemplateReference": {
+            "useTemplateDefault": false,
+            "settingValueTemplateId": "de57abd5-1a87-463e-96e7-e117524003ba"
+          }
+        },
+        "settingDefinitionId": "com.apple.managedclient.preferences_automaticsamplesubmission",
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "d5563bad-08c5-47de-8bbb-5d44e0f9a23a"
+        }
+      }
+    },
+    {
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+        "choiceSettingValue": {
+          "value": "com.apple.managedclient.preferences_diagnosticlevel_0",
+          "settingValueTemplateReference": {
+            "useTemplateDefault": false,
+            "settingValueTemplateId": "5fc10db6-9ee5-434a-9ed0-1382bf72969e"
+          }
+        },
+        "settingDefinitionId": "com.apple.managedclient.preferences_diagnosticlevel",
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "c7a9a79b-20cf-461f-8021-94702a32543b"
+        }
+      }
+    },
+    {
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+        "choiceSettingValue": {
+          "value": "com.apple.managedclient.preferences_automaticdefinitionupdateenabled_true",
+          "settingValueTemplateReference": {
+            "useTemplateDefault": false,
+            "settingValueTemplateId": "112fd4a8-1393-49b6-9569-0d37266a6ad3"
+          }
+        },
+        "settingDefinitionId": "com.apple.managedclient.preferences_automaticdefinitionupdateenabled",
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "cc18c6dc-dca5-4845-9c78-c718c9447ddd"
+        }
+      }
+    },
+    {
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstance",
+        "settingDefinitionId": "com.apple.managedclient.preferences_threattypesettings",
+        "groupSettingCollectionValue": [
+          {
+            "children": [
+              {
+                "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+                "choiceSettingValue": {
+                  "value": "com.apple.managedclient.preferences_threattypesettings_item_key_0",
+                  "settingValueTemplateReference": {
+                    "useTemplateDefault": false,
+                    "settingValueTemplateId": "45c09bfc-8cbd-4118-9396-17427d8c5795"
+                  }
+                },
+                "settingDefinitionId": "com.apple.managedclient.preferences_threattypesettings_item_key",
+                "settingInstanceTemplateReference": {
+                  "settingInstanceTemplateId": "675e2ada-1e8f-46eb-9348-ab0707c86ed0"
+                }
+              },
+              {
+                "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+                "choiceSettingValue": {
+                  "value": "com.apple.managedclient.preferences_threattypesettings_item_value_1",
+                  "settingValueTemplateReference": {
+                    "useTemplateDefault": false,
+                    "settingValueTemplateId": "2d7b917e-affe-47d4-aa42-8468bc109dad"
+                  }
+                },
+                "settingDefinitionId": "com.apple.managedclient.preferences_threattypesettings_item_value",
+                "settingInstanceTemplateReference": {
+                  "settingInstanceTemplateId": "347d727a-70f7-4d22-af3d-5571052ce9d5"
+                }
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+                "choiceSettingValue": {
+                  "value": "com.apple.managedclient.preferences_threattypesettings_item_key_1",
+                  "settingValueTemplateReference": {
+                    "useTemplateDefault": false,
+                    "settingValueTemplateId": "8805bc0f-d152-4491-89a2-0c1789812471"
+                  }
+                },
+                "settingDefinitionId": "com.apple.managedclient.preferences_threattypesettings_item_key",
+                "settingInstanceTemplateReference": {
+                  "settingInstanceTemplateId": "2865141e-6361-4611-8e39-6b2023bd38ae"
+                }
+              },
+              {
+                "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+                "choiceSettingValue": {
+                  "value": "com.apple.managedclient.preferences_threattypesettings_item_value_1",
+                  "settingValueTemplateReference": {
+                    "useTemplateDefault": false,
+                    "settingValueTemplateId": "61cb5321-0e1c-47dc-b117-1fd48e847332"
+                  }
+                },
+                "settingDefinitionId": "com.apple.managedclient.preferences_threattypesettings_item_value",
+                "settingInstanceTemplateReference": {
+                  "settingInstanceTemplateId": "eea71161-a378-422c-b477-29f2b13f64ed"
+                }
+              }
+            ]
+          }
+        ],
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "f2df12de-2704-4a13-9e10-21f4857122aa"
+        }
+      }
+    },
+    {
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+        "choiceSettingValue": {
+          "value": "com.apple.managedclient.preferences_enablefilehashcomputation_false",
+          "settingValueTemplateReference": {
+            "useTemplateDefault": false,
+            "settingValueTemplateId": "96559430-ea19-4fb6-b98a-c237a2e31ae5"
+          }
+        },
+        "settingDefinitionId": "com.apple.managedclient.preferences_enablefilehashcomputation",
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "8472c23f-3f2d-4acf-9386-a0715ad6e591"
+        }
+      }
+    },
+    {
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+        "choiceSettingValue": {
+          "value": "com.apple.managedclient.preferences_scanafterdefinitionupdate_true",
+          "settingValueTemplateReference": {
+            "useTemplateDefault": false,
+            "settingValueTemplateId": "1d05f27d-cc04-44a3-82f8-91df943b03e4"
+          }
+        },
+        "settingDefinitionId": "com.apple.managedclient.preferences_scanafterdefinitionupdate",
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "65bc7d9e-a0fc-4e3f-b464-550c30589e3c"
+        }
+      }
+    },
+    {
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+        "choiceSettingValue": {
+          "value": "com.apple.managedclient.preferences_scanarchives_true",
+          "settingValueTemplateReference": {
+            "useTemplateDefault": false,
+            "settingValueTemplateId": "26bb4b38-6e8a-4e3d-9045-81314475b3fe"
+          }
+        },
+        "settingDefinitionId": "com.apple.managedclient.preferences_scanarchives",
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "27ca9434-85a0-4175-999d-bbef8eb8d066"
+        }
+      }
+    },
+    {
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+        "choiceSettingValue": {
+          "value": "com.apple.managedclient.preferences_enforcementlevel_antivirusengine_2",
+          "settingValueTemplateReference": {
+            "useTemplateDefault": false,
+            "settingValueTemplateId": "440003a2-8406-47bb-a785-a45869556ead"
+          }
+        },
+        "settingDefinitionId": "com.apple.managedclient.preferences_enforcementlevel_antivirusengine",
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "a1bf7f4c-196e-4930-8395-a9b496433322"
+        }
+      }
+    },
+    {
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+        "choiceSettingValue": {
+          "value": "com.apple.managedclient.preferences_enforcementlevel_1",
+          "settingValueTemplateReference": {
+            "useTemplateDefault": false,
+            "settingValueTemplateId": "96ced765-4f68-441a-b9ad-b683cfdfa28f"
+          }
+        },
+        "settingDefinitionId": "com.apple.managedclient.preferences_enforcementlevel",
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "94f6f35c-4cee-4a61-930a-491b698c790a"
+        }
+      }
+    },
+    {
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+        "choiceSettingValue": {
+          "value": "com.apple.managedclient.preferences_enforcementlevel_tamperprotection_2",
+          "settingValueTemplateReference": {
+            "useTemplateDefault": false,
+            "settingValueTemplateId": "6e25fd09-16f1-42fd-9ffe-954ee1c0b904"
+          }
+        },
+        "settingDefinitionId": "com.apple.managedclient.preferences_enforcementlevel_tamperprotection",
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "3c4efab3-cf91-4540-b86d-54507c90bb4b"
+        }
+      }
+    },
+    {
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+        "choiceSettingValue": {
+          "value": "com.apple.managedclient.preferences_consumerexperience_0",
+          "settingValueTemplateReference": {
+            "useTemplateDefault": false,
+            "settingValueTemplateId": "95f4ea0a-5907-4008-931b-652105f937a0"
+          }
+        },
+        "settingDefinitionId": "com.apple.managedclient.preferences_consumerexperience",
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "1cb52ec2-c861-4c4a-9184-e4cc13eba6ad"
+        }
+      }
+    },
+    {
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+        "choiceSettingValue": {
+          "value": "com.apple.managedclient.preferences_hidestatusmenuicon_false",
+          "settingValueTemplateReference": {
+            "useTemplateDefault": false,
+            "settingValueTemplateId": "fd30f322-4968-4479-8510-ad308ca8abe3"
+          }
+        },
+        "settingDefinitionId": "com.apple.managedclient.preferences_hidestatusmenuicon",
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "1b9f3e2b-46e8-4346-935d-dd0bd8ad2443"
+        }
+      }
+    },
+    {
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+        "choiceSettingValue": {
+          "value": "com.apple.managedclient.preferences_userinitiatedfeedback_0",
+          "settingValueTemplateReference": {
+            "useTemplateDefault": false,
+            "settingValueTemplateId": "41df6cea-c66a-44a6-b37b-c73c811a898c"
+          }
+        },
+        "settingDefinitionId": "com.apple.managedclient.preferences_userinitiatedfeedback",
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "4423d695-27c2-4266-b253-bff098657834"
+        }
+      }
+    },
+    {
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationSimpleSettingInstance",
+        "simpleSettingValue": {
+          "value": 90,
+          "@odata.type": "#microsoft.graph.deviceManagementConfigurationIntegerSettingValue",
+          "settingValueTemplateReference": {
+            "useTemplateDefault": false,
+            "settingValueTemplateId": "f97c1b05-9600-4175-9ad4-81fc33bcc3b2"
+          }
+        },
+        "settingDefinitionId": "com.apple.managedclient.preferences_scanresultsretentiondays",
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "6b2a8b5b-379a-461b-b36d-42a12dabd54b"
+        }
+      }
+    },
+    {
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationSimpleSettingInstance",
+        "simpleSettingValue": {
+          "value": 10000,
+          "@odata.type": "#microsoft.graph.deviceManagementConfigurationIntegerSettingValue",
+          "settingValueTemplateReference": {
+            "useTemplateDefault": false,
+            "settingValueTemplateId": "de0f30a5-14f9-4190-82b9-f95aea6438f8"
+          }
+        },
+        "settingDefinitionId": "com.apple.managedclient.preferences_scanhistorymaximumitems",
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "46df7588-c7fa-48a1-983b-59fcfff33eec"
+        }
+      }
+    },
+    {
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationSimpleSettingInstance",
+        "simpleSettingValue": {
+          "value": 2,
+          "@odata.type": "#microsoft.graph.deviceManagementConfigurationIntegerSettingValue",
+          "settingValueTemplateReference": {
+            "useTemplateDefault": false,
+            "settingValueTemplateId": "fe25bbb2-f6de-480a-9153-11f90d7dab4e"
+          }
+        },
+        "settingDefinitionId": "com.apple.managedclient.preferences_maximumondemandscanthreads",
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "e02fd3ba-4146-4b7d-9c7f-dffec96465e5"
+        }
+      }
+    }
+  ]
+}

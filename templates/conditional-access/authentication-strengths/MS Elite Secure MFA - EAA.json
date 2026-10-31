@@ -1,0 +1,9 @@
+{
+  "displayName": "MS Elite | Secure MFA - EAA",
+  "description": "FIDO2 security key or Temporary Access Pass, for emergency access accounts",
+  "allowedCombinations": [
+    "fido2",
+    "temporaryAccessPassOneTime",
+    "temporaryAccessPassMultiUse"
+  ]
+}

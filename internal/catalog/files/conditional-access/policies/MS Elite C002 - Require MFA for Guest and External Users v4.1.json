@@ -1,0 +1,43 @@
+{
+  "displayName": "MS Elite | C002 - Require MFA for Guest and External Users v4.1",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "users": {
+      "includeGuestsOrExternalUsers": {
+        "externalTenants": {
+          "@odata.type": "#microsoft.graph.conditionalAccessAllExternalTenants",
+          "membershipKind": "all"
+        },
+        "guestOrExternalUserTypes": "internalGuest,b2bCollaborationGuest,b2bCollaborationMember,b2bDirectConnectUser,otherExternalUser,serviceProvider"
+      }
+    },
+    "locations": {
+      "includeLocations": [
+        "All"
+      ]
+    },
+    "applications": {
+      "includeApplications": [
+        "All"
+      ]
+    },
+    "clientAppTypes": [
+      "all"
+    ]
+  },
+  "grantControls": {
+    "operator": "OR",
+    "builtInControls": [
+      "mfa"
+    ]
+  },
+  "sessionControls": {
+    "signInFrequency": {
+      "type": "hours",
+      "value": 8,
+      "isEnabled": true,
+      "frequencyInterval": "timeBased",
+      "authenticationType": "primaryAndSecondaryAuthentication"
+    }
+  }
+}

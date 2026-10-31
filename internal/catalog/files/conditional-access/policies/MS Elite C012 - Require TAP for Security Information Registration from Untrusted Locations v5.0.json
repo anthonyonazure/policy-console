@@ -1,0 +1,36 @@
+{
+  "displayName": "MS Elite | C012 - Require TAP for Security Information Registration from Untrusted Locations v5.0",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "users": {
+      "includeUsers": [
+        "All"
+      ],
+      "excludeGroups": [
+        "${EMERGENCY_ACCESS_GROUP_ID}"
+      ]
+    },
+    "locations": {
+      "excludeLocations": [
+        "AllTrusted"
+      ],
+      "includeLocations": [
+        "All"
+      ]
+    },
+    "applications": {
+      "includeUserActions": [
+        "urn:user:registersecurityinfo"
+      ]
+    },
+    "clientAppTypes": [
+      "all"
+    ]
+  },
+  "grantControls": {
+    "operator": "OR",
+    "authenticationStrength": {
+      "id": "00000000-0000-0000-0000-000000000002"
+    }
+  }
+}

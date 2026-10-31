@@ -1,0 +1,9 @@
+{
+  "@odata.type": "#microsoft.graph.countryNamedLocation",
+  "displayName": "MS Elite | Trusted Countries v4.0",
+  "countriesAndRegions": [
+    "US"
+  ],
+  "countryLookupMethod": "clientIpAddress",
+  "includeUnknownCountriesAndRegions": false
+}

@@ -1,0 +1,31 @@
+{
+  "displayName": "Praxis | P08 - High-value users re-authenticate every 4 hours",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "users": {
+      "excludeGroups": [
+        "${EMERGENCY_ACCESS_GROUP_ID}"
+      ],
+      "includeGroups": [
+        "${HIGH_VALUE_GROUP_ID}"
+      ]
+    },
+    "applications": {
+      "includeApplications": [
+        "All"
+      ]
+    },
+    "clientAppTypes": [
+      "all"
+    ]
+  },
+  "sessionControls": {
+    "signInFrequency": {
+      "isEnabled": true,
+      "type": "hours",
+      "value": 4,
+      "authenticationType": "primaryAndSecondaryAuthentication",
+      "frequencyInterval": "timeBased"
+    }
+  }
+}

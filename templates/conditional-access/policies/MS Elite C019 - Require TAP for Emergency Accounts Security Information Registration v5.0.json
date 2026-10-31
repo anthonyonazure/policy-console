@@ -1,0 +1,25 @@
+{
+  "displayName": "MS Elite | C019 - Require TAP for Emergency Accounts Security Information Registration v5.0",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "users": {
+      "includeGroups": [
+        "${EMERGENCY_ACCESS_GROUP_ID}"
+      ]
+    },
+    "applications": {
+      "includeUserActions": [
+        "urn:user:registersecurityinfo"
+      ]
+    },
+    "clientAppTypes": [
+      "all"
+    ]
+  },
+  "grantControls": {
+    "operator": "OR",
+    "authenticationStrength": {
+      "id": "00000000-0000-0000-0000-000000000002"
+    }
+  }
+}

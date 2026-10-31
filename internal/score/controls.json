@@ -1,0 +1,408 @@
+{
+  "_note": "Control ids here are validated at runtime against the catalog fetched from the publisher. A control id that does not exist upstream is reported as a mapping error rather than scored, so a mistyped or invented control number cannot reach a client report. 'coverage' is a judgement: full means the template satisfies the control as written, partial means it moves in the right direction but does not meet the wording. CIS ids are validated against the catalog imported from the operator's own licensed PDFs; until an import exists they are shown unverified.",
+  "frameworks": {
+    "scuba": "CISA M365 Secure Configuration Baseline (fetched from CISA)",
+    "house-baseline": "House managed baseline",
+    "cis-m365": "CIS Microsoft 365 Foundations Benchmark (imported from your licensed copy)"
+  },
+  "verified": {
+    "scuba": true,
+    "house-baseline": true,
+    "cis-m365": false
+  },
+  "templates": {
+    "conditional-access-ms-elite-c006-block-legacy-authentication-v5-1": [
+      {
+        "framework": "scuba",
+        "id": "MS.AAD.1.1v1",
+        "coverage": "full"
+      },
+      {
+        "framework": "house-baseline",
+        "id": "VB-03",
+        "title": "Legacy authentication blocked"
+      },
+      {
+        "framework": "cis-m365",
+        "id": "5.2.2.3",
+        "coverage": "full"
+      }
+    ],
+    "conditional-access-ms-elite-c007-require-mfa-password-change-for-risky-users-v5-0": [
+      {
+        "framework": "scuba",
+        "id": "MS.AAD.2.1v1",
+        "coverage": "partial",
+        "note": "CISA requires high-risk users to be blocked; this template challenges them with MFA and a password change instead",
+        "exactOnly": true
+      },
+      {
+        "framework": "house-baseline",
+        "id": "VB-06",
+        "title": "Risky users forced to re-authenticate and reset"
+      },
+      {
+        "framework": "cis-m365",
+        "id": "5.2.2.6",
+        "coverage": "full",
+        "exactOnly": true
+      }
+    ],
+    "conditional-access-ms-elite-c008-require-mfa-for-risky-signins-v5-0": [
+      {
+        "framework": "scuba",
+        "id": "MS.AAD.2.3v1",
+        "coverage": "partial",
+        "note": "CISA requires high-risk sign-ins to be blocked; this template requires MFA instead",
+        "exactOnly": true
+      },
+      {
+        "framework": "house-baseline",
+        "id": "VB-07",
+        "title": "Risky sign-ins challenged"
+      },
+      {
+        "framework": "cis-m365",
+        "id": "5.2.2.7",
+        "coverage": "full",
+        "exactOnly": true
+      },
+      {
+        "framework": "cis-m365",
+        "id": "5.2.2.8",
+        "coverage": "partial",
+        "note": "CIS requires medium and high sign-in risk to be blocked; this template requires MFA instead",
+        "exactOnly": true
+      }
+    ],
+    "conditional-access-ms-elite-c003b-require-phishing-resistant-mfa-for-admin-roles-v5-0": [
+      {
+        "framework": "scuba",
+        "id": "MS.AAD.3.6v1",
+        "coverage": "partial",
+        "note": "The template grants authentication strength 0002, ordinary MFA, which accepts SMS and voice. CISA requires phishing-resistant (0004). Partial until the template is corrected."
+      },
+      {
+        "framework": "house-baseline",
+        "id": "VB-04",
+        "title": "Admins use phishing-resistant MFA",
+        "coverage": "partial",
+        "note": "C003b grants ordinary MFA (strength 0002), not phishing-resistant (0004)."
+      },
+      {
+        "framework": "cis-m365",
+        "id": "5.2.2.5",
+        "coverage": "partial",
+        "note": "The template grants authentication strength 0002, ordinary MFA, which accepts SMS and voice. CIS requires phishing-resistant (0004)."
+      }
+    ],
+    "conditional-access-ms-elite-c001-require-mfa-from-untrusted-locations-v5-1": [
+      {
+        "framework": "scuba",
+        "id": "MS.AAD.3.2v1",
+        "coverage": "partial",
+        "note": "Requires MFA at every location, but excludes Android and iOS, so phones are never challenged."
+      },
+      {
+        "framework": "house-baseline",
+        "id": "VB-02",
+        "title": "MFA from outside trusted locations"
+      },
+      {
+        "framework": "cis-m365",
+        "id": "5.2.2.2",
+        "coverage": "partial",
+        "note": "Requires MFA at every location, but excludes Android and iOS, so phones are never challenged."
+      }
+    ],
+    "conditional-access-ms-elite-c017-block-unmanaged-devices-v5-1": [
+      {
+        "framework": "scuba",
+        "id": "MS.AAD.3.7v1",
+        "coverage": "full"
+      },
+      {
+        "framework": "house-baseline",
+        "id": "VB-14",
+        "title": "Managed devices required"
+      },
+      {
+        "framework": "cis-m365",
+        "id": "5.2.2.9",
+        "coverage": "full"
+      }
+    ],
+    "conditional-access-ms-elite-c012-require-tap-for-security-information-registration-from-untrusted-locations-v5-0": [
+      {
+        "framework": "scuba",
+        "id": "MS.AAD.3.8v1",
+        "coverage": "partial",
+        "note": "CISA requires a managed device to register MFA; this template requires a Temporary Access Pass from untrusted locations"
+      },
+      {
+        "framework": "house-baseline",
+        "id": "VB-15",
+        "title": "MFA registration controlled"
+      },
+      {
+        "framework": "cis-m365",
+        "id": "5.2.2.10",
+        "coverage": "partial",
+        "note": "CIS requires a managed device to register security information; this template requires a Temporary Access Pass from untrusted locations"
+      }
+    ],
+    "conditional-access-ms-elite-c011-block-device-code-flow-v5-1": [
+      {
+        "framework": "scuba",
+        "id": "MS.AAD.3.9v1",
+        "coverage": "full"
+      },
+      {
+        "framework": "house-baseline",
+        "id": "VB-08",
+        "title": "Device code flow blocked"
+      },
+      {
+        "framework": "cis-m365",
+        "id": "5.2.2.12",
+        "coverage": "full"
+      }
+    ],
+    "conditional-access-b365e-c003a-require-mfa-for-admin-roles-v5-0": [
+      {
+        "framework": "house-baseline",
+        "id": "VB-01",
+        "title": "Admins must use MFA"
+      },
+      {
+        "framework": "cis-m365",
+        "id": "5.2.2.1",
+        "coverage": "full"
+      }
+    ],
+    "conditional-access-ms-elite-c002-require-mfa-for-guest-and-external-users-v4-1": [
+      {
+        "framework": "house-baseline",
+        "id": "VB-05",
+        "title": "Guests and external users must use MFA"
+      }
+    ],
+    "conditional-access-ms-elite-c020-require-fido2-or-tap-authentication-for-emergency-accounts-v5-0": [
+      {
+        "framework": "house-baseline",
+        "id": "VB-09",
+        "title": "Break-glass accounts use FIDO2 or TAP"
+      }
+    ],
+    "conditional-access-ms-elite-c015-block-admin-access-from-unmanaged-devices-v5-1": [
+      {
+        "framework": "house-baseline",
+        "id": "VB-16",
+        "title": "Admin access only from managed devices"
+      }
+    ],
+    "conditional-access-ms-elite-c004-block-access-from-high-risk-countries-no-exclusions-v5-2": [
+      {
+        "framework": "house-baseline",
+        "id": "VB-17",
+        "title": "High-risk countries blocked"
+      },
+      {
+        "framework": "cis-m365",
+        "id": "5.2.2.15",
+        "coverage": "full"
+      }
+    ],
+    "defender-b365e-w10-11-endpoint-antivirus-defender-configuration-v4-1": [
+      {
+        "framework": "house-baseline",
+        "id": "VB-10",
+        "title": "Managed antivirus configuration on workstations"
+      }
+    ],
+    "defender-b365e-w10-11-endpoint-asr-attack-surface-reduction-rules-v4-2": [
+      {
+        "framework": "house-baseline",
+        "id": "VB-11",
+        "title": "Attack surface reduction rules on workstations"
+      }
+    ],
+    "defender-b365e-w10-11-endpoint-firewall-defender-configuration-v4-1": [
+      {
+        "framework": "house-baseline",
+        "id": "VB-12",
+        "title": "Managed firewall configuration"
+      }
+    ],
+    "defender-windows-10-later-laps": [
+      {
+        "framework": "house-baseline",
+        "id": "VB-13",
+        "title": "Local administrator passwords rotated"
+      }
+    ],
+    "conditional-access-ms-elite-c016-limit-web-sessions-time-from-unmanaged-devices-v5-1": [
+      {
+        "framework": "cis-m365",
+        "id": "5.2.2.4",
+        "coverage": "partial",
+        "note": "CIS asks for sign-in frequency and non-persistent browser sessions for administrators; this template applies them to everyone, but only on unmanaged devices"
+      }
+    ],
+    "conditional-access-ms-elite-trusted-countries-v4-0": [
+      {
+        "framework": "cis-m365",
+        "id": "5.2.2.14",
+        "coverage": "full"
+      }
+    ],
+    "conditional-access-ms-elite-c005-block-access-from-untrusted-countries-exclude-travel-v5-2": [
+      {
+        "framework": "cis-m365",
+        "id": "5.2.2.15",
+        "coverage": "full"
+      }
+    ],
+    "praxis-p01-require-mfa-for-all-users-on-every-platform": [
+      {
+        "framework": "cis-m365",
+        "id": "5.2.2.2",
+        "coverage": "full"
+      },
+      {
+        "framework": "scuba",
+        "id": "MS.AAD.3.2v1",
+        "coverage": "full"
+      }
+    ],
+    "praxis-p02-require-phishing-resistant-mfa-for-administrators": [
+      {
+        "framework": "cis-m365",
+        "id": "5.2.2.1",
+        "coverage": "full"
+      },
+      {
+        "framework": "cis-m365",
+        "id": "5.2.2.5",
+        "coverage": "full"
+      },
+      {
+        "framework": "scuba",
+        "id": "MS.AAD.3.6v1",
+        "coverage": "full"
+      },
+      {
+        "framework": "house-baseline",
+        "id": "VB-04",
+        "coverage": "full",
+        "title": "Admins use phishing-resistant MFA"
+      }
+    ],
+    "praxis-p03-block-legacy-authentication": [
+      {
+        "framework": "cis-m365",
+        "id": "5.2.2.3",
+        "coverage": "full"
+      },
+      {
+        "framework": "scuba",
+        "id": "MS.AAD.1.1v1",
+        "coverage": "full"
+      }
+    ],
+    "praxis-p04-high-risk-users-must-change-password-with-mfa": [
+      {
+        "framework": "cis-m365",
+        "id": "5.2.2.6",
+        "coverage": "full",
+        "exactOnly": true
+      },
+      {
+        "framework": "scuba",
+        "id": "MS.AAD.2.1v1",
+        "coverage": "partial",
+        "note": "CISA requires high-risk users to be blocked; this template requires MFA and a password change instead",
+        "exactOnly": true
+      }
+    ],
+    "praxis-p05-block-high-risk-sign-ins": [
+      {
+        "framework": "cis-m365",
+        "id": "5.2.2.7",
+        "coverage": "full",
+        "exactOnly": true
+      },
+      {
+        "framework": "cis-m365",
+        "id": "5.2.2.8",
+        "coverage": "partial",
+        "note": "CIS asks for medium and high risk to be blocked; P05 blocks high, P06 challenges medium",
+        "exactOnly": true
+      },
+      {
+        "framework": "scuba",
+        "id": "MS.AAD.2.3v1",
+        "coverage": "full",
+        "exactOnly": true
+      }
+    ],
+    "praxis-p06-medium-risk-sign-ins-must-re-authenticate-with-mfa": [
+      {
+        "framework": "cis-m365",
+        "id": "5.2.2.7",
+        "coverage": "full",
+        "exactOnly": true
+      }
+    ],
+    "praxis-p07-standard-users-re-authenticate-every-24-hours": [
+      {
+        "framework": "cis-m365",
+        "id": "5.2.2.13",
+        "coverage": "full"
+      }
+    ],
+    "praxis-p09-no-persistent-browser-sessions-on-unmanaged-devices": [
+      {
+        "framework": "cis-m365",
+        "id": "5.2.2.4",
+        "coverage": "partial",
+        "note": "CIS asks for this for administrators on every device; P09 applies it to everyone on unmanaged devices"
+      }
+    ],
+    "praxis-p10-administrators-must-use-a-compliant-or-hybrid-joined-device": [
+      {
+        "framework": "cis-m365",
+        "id": "5.2.2.9",
+        "coverage": "partial",
+        "note": "CIS requires a managed device for all users; P10 requires it for administrators"
+      }
+    ],
+    "praxis-p12-require-mfa-for-guests": [
+      {
+        "framework": "house-baseline",
+        "id": "VB-05",
+        "coverage": "full",
+        "title": "Guests and external users must use MFA"
+      }
+    ],
+    "praxis-p13-block-device-code-flow": [
+      {
+        "framework": "cis-m365",
+        "id": "5.2.2.12",
+        "coverage": "full"
+      },
+      {
+        "framework": "scuba",
+        "id": "MS.AAD.3.9v1",
+        "coverage": "full"
+      }
+    ],
+    "praxis-p14-block-sign-in-from-outside-trusted-countries": [
+      {
+        "framework": "cis-m365",
+        "id": "5.2.2.15",
+        "coverage": "full"
+      }
+    ]
+  }
+}

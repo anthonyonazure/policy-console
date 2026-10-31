@@ -1,0 +1,37 @@
+{
+  "displayName": "Praxis | P14 - Block sign-in from outside trusted countries",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "users": {
+      "excludeGroups": [
+        "${EMERGENCY_ACCESS_GROUP_ID}",
+        "${TRAVEL_EXCLUSION_GROUP_ID}"
+      ],
+      "includeUsers": [
+        "All"
+      ]
+    },
+    "applications": {
+      "includeApplications": [
+        "All"
+      ]
+    },
+    "clientAppTypes": [
+      "all"
+    ],
+    "locations": {
+      "includeLocations": [
+        "All"
+      ],
+      "excludeLocations": [
+        "${TRUSTED_COUNTRIES_LOCATION_ID}"
+      ]
+    }
+  },
+  "grantControls": {
+    "operator": "OR",
+    "builtInControls": [
+      "block"
+    ]
+  }
+}

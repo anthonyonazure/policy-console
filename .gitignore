@@ -1,0 +1,8 @@
+dist/
+*.db
+*.db-wal
+*.db-shm
+.env
+
+# built by scripts/run-readonly.sh
+/policyconsole

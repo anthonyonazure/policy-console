@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Policy Console</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>🛡</text></svg>">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="bar">
+  <div class="brand">POLICY&nbsp;CONSOLE</div>
+  <select id="tenantPicker" title="Tenant"></select>
+  <span id="modeBadge" class="badge"></span>
+  <span class="spacer"></span>
+  <span id="statusLine" class="dim"></span>
+  <span id="signIn"></span>
+</header>
+
+<nav class="tabs">
+  <button data-tab="tenants" class="on">TENANTS</button>
+  <button data-tab="fleet">FLEET</button>
+  <button data-tab="drift">DRIFT</button>
+  <button data-tab="baseline">BASELINE</button>
+  <button data-tab="compare">COMPARE</button>
+  <button data-tab="assess">ASSESS</button>
+  <button data-tab="impact">IMPACT</button>
+  <button data-tab="deploy">DEPLOY</button>
+  <button data-tab="consent">CONSENT</button>
+  <button data-tab="buildout">BUILD OUT</button>
+  <button data-tab="profile">CLIENT PROFILE</button>
+  <button data-tab="rollouts">ROLLOUTS</button>
+  <button data-tab="reports">REPORTS</button>
+  <button data-tab="history">HISTORY</button>
+  <button data-tab="runs">RUNS</button>
+  <button data-tab="settings">SETTINGS</button>
+</nav>
+
+<main>
+  <section id="tab-tenants" class="tab on"></section>
+  <section id="tab-fleet" class="tab"></section>
+  <section id="tab-drift" class="tab"></section>
+  <section id="tab-baseline" class="tab"></section>
+  <section id="tab-compare" class="tab"></section>
+  <section id="tab-assess" class="tab"></section>
+  <section id="tab-impact" class="tab"></section>
+  <section id="tab-deploy" class="tab"></section>
+  <section id="tab-consent" class="tab"></section>
+  <section id="tab-buildout" class="tab"></section>
+  <section id="tab-profile" class="tab"></section>
+  <section id="tab-rollouts" class="tab"></section>
+  <section id="tab-reports" class="tab"></section>
+  <section id="tab-history" class="tab"></section>
+  <section id="tab-runs" class="tab"></section>
+  <section id="tab-settings" class="tab"></section>
+</main>
+
+<div id="modal" class="modal" hidden>
+  <div class="sheet">
+    <h3 id="modalTitle"></h3>
+    <div id="modalBody"></div>
+    <div class="row end">
+      <button id="modalCancel" class="ghost">CANCEL</button>
+      <button id="modalOk" class="danger">CONFIRM</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast" hidden></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>

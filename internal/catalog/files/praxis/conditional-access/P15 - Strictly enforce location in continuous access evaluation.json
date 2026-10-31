@@ -1,0 +1,27 @@
+{
+  "displayName": "Praxis | P15 - Strictly enforce location in continuous access evaluation",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "users": {
+      "excludeGroups": [
+        "${EMERGENCY_ACCESS_GROUP_ID}"
+      ],
+      "includeUsers": [
+        "All"
+      ]
+    },
+    "applications": {
+      "includeApplications": [
+        "All"
+      ]
+    },
+    "clientAppTypes": [
+      "all"
+    ]
+  },
+  "sessionControls": {
+    "continuousAccessEvaluation": {
+      "mode": "strictLocation"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "displayName": "Praxis | P11 - Phones must use app protection or be compliant",
+  "state": "enabledForReportingButNotEnforced",
+  "conditions": {
+    "users": {
+      "excludeGroups": [
+        "${EMERGENCY_ACCESS_GROUP_ID}"
+      ],
+      "includeUsers": [
+        "All"
+      ]
+    },
+    "applications": {
+      "includeApplications": [
+        "All"
+      ]
+    },
+    "clientAppTypes": [
+      "all"
+    ],
+    "platforms": {
+      "includePlatforms": [
+        "android",
+        "iOS"
+      ]
+    }
+  },
+  "grantControls": {
+    "operator": "OR",
+    "builtInControls": [
+      "compliantApplication",
+      "compliantDevice"
+    ]
+  }
+}

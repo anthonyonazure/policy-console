@@ -1,0 +1,55 @@
+{
+  "name": "Microsoft Defender MacOS",
+  "description": "",
+  "platforms": "macOS",
+  "technologies": "mdm,appleRemoteManagement",
+  "roleScopeTagIds": [
+    "0"
+  ],
+  "settings": [
+    {
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstance",
+        "settingDefinitionId": "com.apple.system-extension-policy_com.apple.system-extension-policy",
+        "groupSettingCollectionValue": [
+          {
+            "children": [
+              {
+                "@odata.type": "#microsoft.graph.deviceManagementConfigurationGroupSettingCollectionInstance",
+                "settingDefinitionId": "com.apple.system-extension-policy_allowedsystemextensions",
+                "groupSettingCollectionValue": [
+                  {
+                    "children": [
+                      {
+                        "@odata.type": "#microsoft.graph.deviceManagementConfigurationSimpleSettingCollectionInstance",
+                        "settingDefinitionId": "com.apple.system-extension-policy_allowedsystemextensions_generickey",
+                        "simpleSettingCollectionValue": [
+                          {
+                            "value": "com.microsoft.wdav.epsext\t",
+                            "@odata.type": "#microsoft.graph.deviceManagementConfigurationStringSettingValue"
+                          },
+                          {
+                            "value": "com.microsoft.wdav.netext\t",
+                            "@odata.type": "#microsoft.graph.deviceManagementConfigurationStringSettingValue"
+                          }
+                        ]
+                      },
+                      {
+                        "@odata.type": "#microsoft.graph.deviceManagementConfigurationSimpleSettingInstance",
+                        "simpleSettingValue": {
+                          "value": "UBF8T346G9",
+                          "@odata.type": "#microsoft.graph.deviceManagementConfigurationStringSettingValue"
+                        },
+                        "settingDefinitionId": "com.apple.system-extension-policy_allowedsystemextensions_generickey_keytobereplaced"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

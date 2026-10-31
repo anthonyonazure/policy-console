@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Policy impact preview (prototype)</title>
+<style>
+  :root {
+    --bg:#f6f7f9; --card:#ffffff; --ink:#1b2430; --muted:#5b6776; --line:#dde2e8;
+    --ok:#1f8a4c; --okbg:#e3f4ea; --bad:#c23b2e; --badbg:#fbe7e4; --unk:#9a6a00; --unkbg:#fff2d6; --stale:#6b7280; --stalebg:#eceff3;
+    --accent:#2457d6; --accentbg:#e6edfc;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#0f141b; --card:#171e27; --ink:#e8edf3; --muted:#9aa7b6; --line:#2a3441;
+      --ok:#4ac17c; --okbg:#12301f; --bad:#ff7b6e; --badbg:#3a1a17; --unk:#f0b84a; --unkbg:#33270c; --stale:#9aa7b6; --stalebg:#232c38;
+      --accent:#7ba2ff; --accentbg:#1a2745; }
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.45 -apple-system, "Segoe UI", system-ui, sans-serif; }
+  .wrap { max-width:1100px; margin:0 auto; padding:20px 16px 60px; }
+  h1 { font-size:20px; margin:0 0 2px; }
+  .sub { color:var(--muted); margin:0 0 14px; }
+  .sample { display:inline-block; background:var(--unkbg); color:var(--unk); border-radius:4px; padding:1px 8px; font-size:12px; font-weight:600; margin-left:8px; vertical-align:middle; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 16px; margin-bottom:14px; }
+  .row { display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
+  .tabs { display:flex; gap:6px; margin:6px 0 12px; flex-wrap:wrap; }
+  .tab { border:1px solid var(--line); background:var(--card); color:var(--ink); padding:7px 12px; border-radius:8px; cursor:pointer; font:inherit; }
+  .tab[aria-selected="true"] { background:var(--accentbg); border-color:var(--accent); color:var(--accent); font-weight:600; }
+  .big { display:flex; gap:10px; flex-wrap:wrap; }
+  .stat { flex:1 1 130px; border-radius:8px; padding:10px 12px; }
+  .stat b { display:block; font-size:26px; line-height:1.1; }
+  .stat.ok { background:var(--okbg); color:var(--ok); }
+  .stat.bad { background:var(--badbg); color:var(--bad); }
+  .stat.unk { background:var(--unkbg); color:var(--unk); }
+  .stat.stale { background:var(--stalebg); color:var(--stale); }
+  .bar { display:flex; height:14px; border-radius:7px; overflow:hidden; background:var(--line); margin:10px 0 2px; }
+  .bar i { display:block; height:100%; }
+  .bar .ok { background:var(--ok); } .bar .bad { background:var(--bad); } .bar .unk { background:var(--unk); } .bar .stale { background:var(--stale); }
+  label.set { display:flex; gap:10px; align-items:flex-start; padding:10px 0; border-top:1px solid var(--line); }
+  label.set:first-of-type { border-top:0; }
+  .set .meta { flex:1; }
+  .set .name { font-weight:600; }
+  .tag { font-size:11px; padding:1px 7px; border-radius:10px; background:var(--accentbg); color:var(--accent); margin-left:6px; font-weight:600; }
+  .impact { font-size:13px; margin-top:2px; }
+  .impact.bad { color:var(--bad); } .impact.ok { color:var(--ok); } .impact.unk { color:var(--unk); } .impact.off { color:var(--muted); }
+  input[type=range] { width:100%; }
+  table { width:100%; border-collapse:collapse; font-size:14px; }
+  th, td { text-align:left; padding:7px 8px; border-top:1px solid var(--line); vertical-align:top; }
+  th { color:var(--muted); font-weight:600; border-top:0; }
+  .chip { display:inline-block; font-size:12px; border-radius:10px; padding:1px 8px; margin:1px 3px 1px 0; }
+  .chip.ok { background:var(--okbg); color:var(--ok); } .chip.bad { background:var(--badbg); color:var(--bad); }
+  .chip.unk { background:var(--unkbg); color:var(--unk); } .chip.stale { background:var(--stalebg); color:var(--stale); }
+  .hist { display:flex; align-items:flex-end; gap:8px; height:120px; margin-top:8px; }
+  .col { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; }
+  .col .stack { width:100%; display:flex; flex-direction:column-reverse; border-radius:4px 4px 0 0; overflow:hidden; }
+  .col .stack i { display:block; width:100%; }
+  .col .stack .ok { background:var(--ok); } .col .stack .bad { background:var(--bad); }
+  .col small { font-size:11px; color:var(--muted); text-align:center; margin-top:4px; line-height:1.15; }
+  .oldest { font-size:13px; color:var(--muted); }
+  .oldest b { color:var(--ink); }
+  textarea { width:100%; min-height:90px; font:13px/1.4 ui-monospace, Menlo, monospace; background:var(--card); color:var(--ink); border:1px solid var(--line); border-radius:8px; padding:8px; }
+  button.go { border:1px solid var(--accent); background:var(--accent); color:#fff; border-radius:8px; padding:8px 14px; font:inherit; cursor:pointer; }
+  .hint { color:var(--muted); font-size:13px; }
+  @media (max-width:600px) { .hide-sm { display:none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Policy impact preview <span class="sample">SAMPLE DATA, nothing real</span></h1>
+  <p class="sub">Windows compliance policy for a client with 42 enrolled devices. Change a setting and see who would pass, who would fail and why, before anything is deployed. Pick the layout you like best.</p>
+
+  <div class="card">
+    <div class="big" id="summary"></div>
+    <div class="bar" id="bar" aria-hidden="true"></div>
+    <div class="hint" id="barhint"></div>
+  </div>
+
+  <div class="tabs" role="tablist" aria-label="Layout">
+    <button class="tab" role="tab" data-v="A" aria-selected="false">A. Settings with live counts</button>
+    <button class="tab" role="tab" data-v="B" aria-selected="true">B. Device list with reasons (chosen)</button>
+    <button class="tab" role="tab" data-v="C" aria-selected="false">C. Version spread and slider</button>
+  </div>
+
+  <div id="view"></div>
+
+  <div class="card">
+    <b>Your reaction</b>
+    <p class="hint">Pick a layout, say what is missing or wrong, then copy this block back into the chat.</p>
+    <textarea id="notes" placeholder="Example: I want A for the settings but B's reasons column. Also show the user's name."></textarea>
+    <p><button class="go" id="export">Copy summary for the chat</button> <span class="hint" id="copied"></span></p>
+  </div>
+</div>
+
+<script>
+// ---- sample fleet: 42 fake Windows devices ----
+const BUILDS = [
+  {b:19044, label:"Windows 10 21H2 (10.0.19044)"},
+  {b:19045, label:"Windows 10 22H2 (10.0.19045)"},
+  {b:22621, label:"Windows 11 22H2 (10.0.22621)"},
+  {b:22631, label:"Windows 11 23H2 (10.0.22631)"},
+  {b:26100, label:"Windows 11 24H2 (10.0.26100)"},
+];
+const people = ["Ada","Ben","Cora","Dev","Eli","Fay","Gus","Hana","Ivo","Jun","Kai","Lena","Moe","Nia","Oz","Pia","Quin","Rey","Sol","Tess","Uma","Vic","Wes","Xia","Yan","Zed"];
+const fleet = [];
+(function build(){
+  // deterministic spread so the prototype is the same every time
+  const plan = [
+    [19044,1],[19045,5],[22621,6],[22631,14],[26100,16]
+  ];
+  let n = 0;
+  for (const [b,count] of plan) for (let i=0;i<count;i++){
+    n++;
+    fleet.push({
+      name:"SAMPLE-LT-"+String(n).padStart(2,"0"),
+      user:people[n%people.length]+" "+String.fromCharCode(65+(n*7)%26)+".",
+      build:b,
+      encrypted: !(n===3||n===9||n===30),
+      tpm: (n===4)?"none":(n===12||n===13)?"1.2":"2.0",
+      secureBoot: !(n===4||n===9||n===22),
+      sigsOk: (n===17||n===18)?null:!(n===27),   // null = the console cannot tell
+      lastSeenDays: (n===8||n===40)?61:(n%9===0?9:1),
+    });
+  }
+})();
+
+// ---- policy settings (each optional) ----
+const S = {
+  minOs:      {on:true,  value:22621, name:"Minimum operating system", rec:"Recommended: Windows 11 22H2 or newer"},
+  bitlocker:  {on:true,  name:"Disk encryption (BitLocker) required", rec:"Recommended: on"},
+  tpm:        {on:false, name:"TPM 2.0 required", rec:"Recommended: on for new devices"},
+  secureBoot: {on:false, name:"Secure Boot required", rec:"Optional"},
+  sigs:       {on:true,  name:"Antivirus signatures up to date", rec:"Recommended: on"},
+};
+let hideStale = true;
+let view = "B";
+
+function buildLabel(b){ return (BUILDS.find(x=>x.b===b)||{label:"build "+b}).label; }
+
+function judge(d){
+  if (d.lastSeenDays > 30) return {state:"stale", reasons:[`Not seen for ${d.lastSeenDays} days`]};
+  const fails=[], unknown=[];
+  if (S.minOs.on && d.build < S.minOs.value) fails.push(`Windows build ${d.build} is older than the required ${S.minOs.value}`);
+  if (S.bitlocker.on && !d.encrypted) fails.push("Disk is not encrypted");
+  if (S.tpm.on && d.tpm !== "2.0") fails.push(d.tpm==="none" ? "No TPM chip" : `TPM is version ${d.tpm}, 2.0 is required`);
+  if (S.secureBoot.on && !d.secureBoot) fails.push("Secure Boot is off");
+  if (S.sigs.on) { if (d.sigsOk===null) unknown.push("Console cannot read antivirus status for this device"); else if (!d.sigsOk) fails.push("Antivirus signatures are out of date"); }
+  if (fails.length) return {state:"bad", reasons:fails};
+  if (unknown.length) return {state:"unk", reasons:unknown};
+  return {state:"ok", reasons:[]};
+}
+
+function results(){
+  return fleet.map(d => ({d, r:judge(d)}));
+}
+
+function counts(rs){
+  const c={ok:0,bad:0,unk:0,stale:0};
+  rs.forEach(x=>{ c[x.r.state]++; });
+  return c;
+}
+
+function oldest(){
+  const live = fleet.filter(d=>d.lastSeenDays<=30);
+  const o = live.reduce((a,b)=>b.build<a.build?b:a);
+  return o;
+}
+
+function renderSummary(){
+  const rs=results(), c=counts(rs), total=rs.length;
+  const judged = total - (hideStale?c.stale:0);
+  const pct = judged? Math.round(100*c.ok/judged):0;
+  document.getElementById("summary").innerHTML =
+    `<div class="stat ok"><b>${c.ok}</b>would be compliant</div>
+     <div class="stat bad"><b>${c.bad}</b>would fail</div>
+     <div class="stat unk"><b>${c.unk}</b>cannot tell yet</div>
+     <div class="stat stale"><b>${c.stale}</b>not seen in 30+ days</div>`;
+  const w = k => (100*c[k]/total).toFixed(1)+"%";
+  document.getElementById("bar").innerHTML =
+    `<i class="ok" style="width:${w("ok")}"></i><i class="unk" style="width:${w("unk")}"></i><i class="bad" style="width:${w("bad")}"></i><i class="stale" style="width:${w("stale")}"></i>`;
+  document.getElementById("barhint").textContent =
+    `${pct}% of the ${judged} active devices would be compliant. Oldest active device: ${oldest().name} on ${buildLabel(oldest().build)}.`;
+}
+
+function impactLine(key){
+  const s=S[key];
+  if(!s.on) return `<div class="impact off">Not in the policy. ${s.rec}.</div>`;
+  let fails=0, unk=0, who=[];
+  fleet.filter(d=>d.lastSeenDays<=30).forEach(d=>{
+    let f=false;
+    if(key==="minOs") f = d.build < s.value;
+    if(key==="bitlocker") f = !d.encrypted;
+    if(key==="tpm") f = d.tpm!=="2.0";
+    if(key==="secureBoot") f = !d.secureBoot;
+    if(key==="sigs"){ if(d.sigsOk===null) unk++; else f = !d.sigsOk; }
+    if(f){ fails++; who.push(d.name); }
+  });
+  const cls = fails? "bad":(unk?"unk":"ok");
+  let t = fails? `${fails} device${fails>1?"s":""} would fail` : "Everyone passes this one";
+  if(unk) t += `${fails?", ":" "}${fails?"":"but "}${unk} cannot be checked yet`;
+  if(who.length) t += `: ${who.slice(0,4).join(", ")}${who.length>4?" and "+(who.length-4)+" more":""}`;
+  return `<div class="impact ${cls}">${t}</div>`;
+}
+
+function viewA(){
+  const o=oldest();
+  const opts = BUILDS.map(x=>`<option value="${x.b}" ${x.b===S.minOs.value?"selected":""}>${x.label}</option>`).join("");
+  return `<div class="card">
+    <label class="set"><input type="checkbox" data-k="minOs" ${S.minOs.on?"checked":""}>
+      <span class="meta"><span class="name">${S.minOs.name}</span><span class="tag">optional</span>
+        <div class="oldest">Your oldest active device runs <b>${buildLabel(o.build)}</b> (${o.name}). ${S.minOs.rec}.</div>
+        <select id="minOsSel" ${S.minOs.on?"":"disabled"}>${opts}</select>
+        ${impactLine("minOs")}</span></label>
+    ${["bitlocker","tpm","secureBoot","sigs"].map(k=>`
+    <label class="set"><input type="checkbox" data-k="${k}" ${S[k].on?"checked":""}>
+      <span class="meta"><span class="name">${S[k].name}</span><span class="tag">optional</span>
+        <div class="oldest">${S[k].rec}</div>${impactLine(k)}</span></label>`).join("")}
+  </div>`;
+}
+
+function settingsStrip(){
+  const opts = BUILDS.map(x=>`<option value="${x.b}" ${x.b===S.minOs.value?"selected":""}>${x.label}</option>`).join("");
+  const o=oldest();
+  return `<div class="card"><b>Settings in this policy</b> <span class="hint">all optional; the list below follows</span>
+    <div class="row" style="margin-top:8px">
+      <label><input type="checkbox" data-k="minOs" ${S.minOs.on?"checked":""}> Minimum OS</label>
+      <select id="minOsSel" ${S.minOs.on?"":"disabled"}>${opts}</select>
+      <span class="oldest">oldest active device: <b>${buildLabel(o.build)}</b></span>
+    </div>
+    <div class="row" style="margin-top:6px">
+      ${["bitlocker","tpm","secureBoot","sigs"].map(k=>`<label><input type="checkbox" data-k="${k}" ${S[k].on?"checked":""}> ${S[k].name}</label>`).join("")}
+    </div></div>`;
+}
+
+function viewB(){
+  const rs=results().filter(x=>!(hideStale && x.r.state==="stale"))
+    .sort((a,b)=>({bad:0,unk:1,ok:2,stale:3}[a.r.state]-{bad:0,unk:1,ok:2,stale:3}[b.r.state]));
+  const label={ok:"Compliant",bad:"Would fail",unk:"Cannot tell",stale:"Not seen"};
+  return settingsStrip() + `<div class="card">
+    <label class="hint"><input type="checkbox" id="hideStale" ${hideStale?"checked":""}> Leave out devices not seen in 30+ days (they are counted above, not judged)</label>
+    <table><thead><tr><th>Device</th><th class="hide-sm">User</th><th>Result</th><th>Why</th></tr></thead><tbody>
+    ${rs.map(x=>`<tr><td>${x.d.name}</td><td class="hide-sm">${x.d.user}</td>
+      <td><span class="chip ${x.r.state}">${label[x.r.state]}</span></td>
+      <td>${x.r.reasons.length? x.r.reasons.map(r=>`<span class="chip ${x.r.state}">${r}</span>`).join("") : '<span class="hint">Meets every setting that is switched on</span>'}</td></tr>`).join("")}
+    </tbody></table>
+    </div>`;
+}
+
+function viewC(){
+  const live = fleet.filter(d=>d.lastSeenDays<=30);
+  const max = Math.max(...BUILDS.map(x=>live.filter(d=>d.build===x.b).length));
+  const cols = BUILDS.map(x=>{
+    const ds=live.filter(d=>d.build===x.b), n=ds.length;
+    const failing = S.minOs.on && x.b < S.minOs.value;
+    const h = max? Math.round(100*n/max):0;
+    return `<div class="col"><div class="stack" style="height:${h}%"><i class="${failing?"bad":"ok"}" style="height:100%"></i></div>
+      <small><b>${n}</b><br>${x.label.replace(/ \(.*/,"")}<br>${x.b}</small></div>`;
+  }).join("");
+  const o=oldest();
+  const idx=BUILDS.findIndex(x=>x.b===S.minOs.value);
+  return `<div class="card">
+    <div class="name">Minimum operating system <span class="tag">optional</span></div>
+    <label class="hint"><input type="checkbox" data-k="minOs" ${S.minOs.on?"checked":""}> Require a minimum version</label>
+    <input type="range" id="slider" min="0" max="${BUILDS.length-1}" step="1" value="${idx}" ${S.minOs.on?"":"disabled"}>
+    <div class="oldest">Required: <b>${buildLabel(S.minOs.value)}</b>. Oldest active device: <b>${buildLabel(o.build)}</b> (${o.name}).</div>
+    <div class="hist">${cols}</div>
+    <p class="hint">Red columns would fail. Drag the slider and the counts above move with it.</p>
+    ${impactLine("minOs")}</div>`;
+}
+
+function render(){
+  renderSummary();
+  document.getElementById("view").innerHTML = {A:viewA,B:viewB,C:viewC}[view]();
+  document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected", t.dataset.v===view));
+  document.querySelectorAll("input[data-k]").forEach(el=>el.addEventListener("change",()=>{ S[el.dataset.k].on=el.checked; render(); }));
+  const sel=document.getElementById("minOsSel"); if(sel) sel.addEventListener("change",()=>{ S.minOs.value=+sel.value; render(); });
+  const sl=document.getElementById("slider"); if(sl) sl.addEventListener("input",()=>{ S.minOs.value=BUILDS[+sl.value].b; render(); });
+  const hs=document.getElementById("hideStale"); if(hs) hs.addEventListener("change",()=>{ hideStale=hs.checked; render(); });
+}
+document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>{ view=t.dataset.v; render(); }));
+document.getElementById("export").addEventListener("click",()=>{
+  const c=counts(results());
+  const text = `Impact preview reaction\nLayout I prefer: ${view}\nSettings on: ${Object.entries(S).filter(([,v])=>v.on).map(([k])=>k).join(", ")}\nMinimum OS: ${S.minOs.value}\nResult: ${c.ok} compliant, ${c.bad} fail, ${c.unk} cannot tell, ${c.stale} not seen\nNotes: ${document.getElementById("notes").value}`;
+  const done=()=>document.getElementById("copied").textContent="Copied.";
+  try { navigator.clipboard.writeText(text).then(done, ()=>{ document.getElementById("notes").value=text; document.getElementById("copied").textContent="Select and copy the text above."; }); }
+  catch(e){ document.getElementById("notes").value=text; document.getElementById("copied").textContent="Select and copy the text above."; }
+});
+render();
+</script>
+</body>
+</html>

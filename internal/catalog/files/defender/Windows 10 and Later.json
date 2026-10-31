@@ -1,0 +1,27 @@
+{
+  "name": "Windows 10 and Later",
+  "description": "",
+  "platforms": "windows10",
+  "technologies": "mdm,microsoftSense",
+  "roleScopeTagIds": [
+    "0"
+  ],
+  "settings": [
+    {
+      "settingInstance": {
+        "@odata.type": "#microsoft.graph.deviceManagementConfigurationChoiceSettingInstance",
+        "choiceSettingValue": {
+          "value": "device_vendor_msft_windowsadvancedthreatprotection_configurationtype_autofromconnector",
+          "settingValueTemplateReference": {
+            "useTemplateDefault": false,
+            "settingValueTemplateId": "e5c7c98c-c854-4140-836e-bd22db59d651"
+          }
+        },
+        "settingDefinitionId": "device_vendor_msft_windowsadvancedthreatprotection_configurationtype",
+        "settingInstanceTemplateReference": {
+          "settingInstanceTemplateId": "23ab0ea3-1b12-429a-8ed0-7390cf699160"
+        }
+      }
+    }
+  ]
+}
